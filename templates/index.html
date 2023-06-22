@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Titanic Survival Prediction</title>
+    <style>
+        .salary-conversion {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    </style>
+    <script>
+        function convertToSalary() {
+            const pclassInput = document.getElementById('pclass-salary');
+            const pclassValue = pclassInput.value.replace(/\D/g, '');
+
+            const salary2023 = parseInt(pclassValue);
+            const salary1912 = Math.round(salary2023 * 0.024);
+
+            const formattedSalary2023 = salary2023.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            const formattedSalary1912 = salary1912.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+            const salaryConversion = `Salary (2023): ${formattedSalary2023} | Salary (1912): ${formattedSalary1912}`;
+            const salaryConversionElement = document.getElementById('salary-conversion');
+            salaryConversionElement.textContent = salaryConversion;
+        }
+    </script>
+</head>
+<body>
+    <h1>Titanic Survival Prediction</h1>
+    <form method="POST" action="/">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="pclass">Salary:</label>
+        <input type="text" id="pclass-salary" name="pclass" pattern="[0-9]+" oninput="convertToSalary()" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
+        <span class="salary-conversion" id="salary-conversion"></span><br><br>
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required><br><br>
+        <label for="sibsp"># of Siblings + Spouse:</label>
+        <input type="text" id="sibsp" name="sibsp" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required><br><br>
+        <label for="parch"># of Parents + Children:</label>
+        <input type="text" id="parch" name="parch" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required><br><br>
+        <label for="fare">Fare:</label>
+        <input type="text" id="fare" name="fare" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode === 46" required><br><br>
+
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="1" checked>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="0">
+        <label for="female">Female</label><br><br>
+
+        <label>Embarked:</label><br>
+        <input type="radio" id="embarked_c" name="embarked" value="Cherbourg" checked>
+        <label for="embarked_c">Cherbourg</label><br>
+        <input type="radio" id="embarked_q" name="embarked" value="Queenstown">
+        <label for="embarked_q">Queenstown</label><br>
+        <input type="radio" id="embarked_s" name="embarked" value="Southampton">
+        <label for="embarked_s">Southampton</label><br><br>
+
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>
