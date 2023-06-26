@@ -2,9 +2,27 @@
 <html>
 <head>
     <title>Titanic Survival Prediction Result</title>
+    <link rel="icon" type="image/png" href="static/titanic.png">
+    <style>
+        body {
+          background-image: url('static/titanic-background.jpg');
+          background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: cover;
+          min-height: 100vh;
+        }
+
+        .result-image {
+          max-width: 500px;
+          height: auto;
+          border-radius: 5px;
+          border: 1px solid white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Prediction Result</h1>
-    <p>{{ result }}</p>
+    <h1 style="color: white; margin: 10px">Prediction Result</h1>
+    <h3 style="color: white; margin: 10px">{{ result }}</p>
+    <img class="result-image" src="{{ url_for('static', filename=image_path) }}">
 </body>
 </html>

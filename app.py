@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 import hashlib
+import random
 
 # Initialize the Flask application
 app = Flask(__name__)
@@ -22,16 +23,25 @@ def home():
     if request.method == 'POST':
         # Get user input from the form
         name = request.form['name']
-        pclass = int(request.form['pclass'])
+        salary = int(request.form['salary'])
         age = float(request.form['age'])
         sibsp = int(request.form['sibsp'])
         parch = int(request.form['parch'])
-        fare = float(request.form['fare'])
         gender = int(request.form['gender'])
-
         embarked = request.form['embarked']
         embarked_q = 1 if embarked == 'Queenstown' else 0
         embarked_s = 1 if embarked == 'Southampton' else 0
+
+        # Convert salary into Pclass (1, 2, or 3) and fare ($)
+        if salary >= 80000:
+            pclass = 1
+            fare = random.uniform(60, 250)
+        elif salary >= 50000:
+            pclass = 2
+            fare = random.uniform(20, 60)
+        else:
+            pclass = 3
+            fare = random.uniform(0, 20)
 
         # Convert name to a numerical value using hashing
         name_hash = hashlib.md5(name.encode()).hexdigest()
@@ -44,8 +54,14 @@ def home():
         prediction = clf.predict(user_data)
 
         # Output the prediction (1 for survived, 0 for not survived)
-        result = 'Survived' if prediction[0] == 1 else 'Not Survived'
-        return render_template('result.html', result=result)
+        if prediction[0] == 1:
+            result = 'You survived'
+            image_path = 'survived.jpg'
+        else:
+            result = 'You died'
+            image_path = 'dead.jpg'
+
+        return render_template('result.html', result=result, image_path=image_path)
     return render_template('index.html')
 
 # Run the Flask application
