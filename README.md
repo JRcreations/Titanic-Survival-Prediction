@@ -2,8 +2,7 @@
 A model that predicts whether or not an individual would have survived the Titanic
 
 # Planning
-Inspiration: Recent events involving the Titanic
-Data: https://www.kaggle.com/competitions/titanic/data
+Inspiration: Recent events involving the Titanic  Data: https://www.kaggle.com/competitions/titanic/data
 ![Planning](planning.png)
 
 # Execution
