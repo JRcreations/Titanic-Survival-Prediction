@@ -7,6 +7,6 @@ Data: https://www.kaggle.com/competitions/titanic/data
 ![Planning](planning.png)
 
 # Execution
-Modeling (Noteable): https://app.noteable.io/p/441c575c-a206-49dd-8343-f2e6a9875004/Titanic-Survival-Prediction-    
-Rendering (Render.com): https://titanic-survival-prediction-c5v8.onrender.com/
+Modeling: https://app.noteable.io/p/441c575c-a206-49dd-8343-f2e6a9875004/Titanic-Survival-Prediction-    
+Rendering: https://titanic-survival-prediction-c5v8.onrender.com/
 
